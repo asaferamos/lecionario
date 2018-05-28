@@ -9,15 +9,33 @@ use \App\Log;
 use \App\View;
 use \App\Controllers\Lectionary;
 
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+$period = CarbonPeriod::create('2010-05-11', '2010-05-17');
 
+// var_dump($period->toArray());
+// 
+// echo $period->count();
+// 
+// die;
+// echo $carbon = new Carbon('first sunday of January 2018', 'America/Sao_Paulo');
+// echo Carbon::now(-5);
+#
 $app = new \Slim\App(
     $config['slim']
 );
 
+// $log = new \App\Log;
+
+
+// $app->add(function ($request, $response, $next) use ($log) {
+//     return $next($request, $response);
+// });
 
 
 $app->get('/', function ($request, $response){
-    new Lectionary();
+    $Lec = new Lectionary();
+    $Lec->nextSunday();
 });
 
 
