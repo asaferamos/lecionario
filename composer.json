@@ -23,7 +23,7 @@
             "Lectionary\\": "src/"
         },
         "files": [
-            "app/functions.php"
+            "src/functions.php"
         ]
     }
 }
