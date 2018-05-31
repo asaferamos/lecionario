@@ -34,8 +34,13 @@ $app = new \Slim\App(
 
 
 $app->get('/', function ($request, $response){
-    $Lec = new Lectionary();
-    $Lec->nextSunday();
+    $Lec = new Lectionary(2020);
+    
+    echo '<table>';
+    foreach ($Lec->especialDays() as $key => $v) {
+        echo '<tr><td>' . $v['date'] . ':</td><td><b>' . $key. '</b></td><td><b>' . $v['observed'] . '</b></td></tr>';
+    }
+    echo '</table>';
 });
 
 

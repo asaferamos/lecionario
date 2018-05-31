@@ -11,7 +11,7 @@ class Lectionary extends Controller{
     private $day;
     private $year;
     private $yearLiturgic;
-    private $periods = [];
+    private $especialDays = [];
     
     public function __construct($year = null){
         if(is_null($year))
@@ -21,7 +21,7 @@ class Lectionary extends Controller{
         self::setYearLiturgic();
         self::createPeriods();
         
-        dd($this->periods);
+        // return $this->especialDays;
         // echo $this->yearLiturgic;
     }
     
@@ -30,13 +30,17 @@ class Lectionary extends Controller{
         // var_dump($carbon->getTimestamp());
     }
     
+    public function especialDays(){
+        return $this->especialDays;
+    }
+    
     private function getSundayDayBefore($code){
         $next = new Carbon('next sunday ' . self::getEspecialDay($code)['date']);
         return $next;
     }
     
     private function getEspecialDay($code){
-        return $this->periods[$code];
+        return $this->especialDays[$code];
     }
     
     private function createPeriods(){
@@ -45,6 +49,12 @@ class Lectionary extends Controller{
         
         // Epiphany of the Lord
         self::setEspecialDay('EpDy', Carbon::create($this->year,1,6,0,0));
+        
+        // Ash Wednesday
+        self::setEspecialDay('AshW', Carbon::now()->timestamp(easter_date($this->year))->subDays(46));
+        
+        // Transfiguration Sunday (or Last Sunday after Epiphany)
+        self::setEspecialDay('Tran', self::getEspecialDay('AshW')['date']->copy()->modify('previous sunday'));
         
         // All Saints Day
         self::setEspecialDay('AllS', Carbon::create($this->year,11,1,0,0));
@@ -56,121 +66,116 @@ class Lectionary extends Controller{
         self::setEspecialDay('NYDy', new Carbon('first day of January ' . $this->year));
         
         // First Sunday of christmas
-        self::setEspecialDay('Xmas01', new Carbon('next sunday ' . self::getEspecialDay('Natv')['date']));
+        self::setEspecialDay('Xmas01', self::getEspecialDay('Natv')['date']->copy()->modify('next sunday'));
         
         // Second Sunday of christmas
         // Sunday between January 2 and January 5
-        $observed = (self::getSundayDayBefore('NYDy')->between(Carbon::create(($this->year+1),1,2),Carbon::create(($this->year+1),1,5))) ? true : false;
-        self::setEspecialDay('Xmas02', new Carbon('first sunday of January ' . ($this->year+1)), $observed);
+        $observed = (self::getSundayDayBefore('NYDy')->between(Carbon::create($this->year,1,2),Carbon::create($this->year,1,5))) ? true : false;
+        self::setEspecialDay('Xmas02', new Carbon('first sunday of January ' . $this->year), $observed);
         
         
         
         // First Sunday after Epiphany or Baptism of the Lord ( Ordinary 1 )
-        self::setEspecialDay('Epip01', new Carbon('next sunday ' . self::getEspecialDay('EpDy')['date']));
+        self::setEspecialDay('Epip01', self::getEspecialDay('EpDy')['date']->copy()->modify('next sunday'));
         
         // Second Sunday after Epiphany ( Ordinary 2 )
-        self::setEspecialDay('Epip02', new Carbon('next sunday ' . self::getEspecialDay('Epip01')['date']));
+        self::setEspecialDay('Epip02', self::getEspecialDay('Epip01')['date']->copy()->modify('next sunday'));
         
         // Third Sunday after Epiphany ( Ordinary 3 )
-        self::setEspecialDay('Epip03', new Carbon('next sunday ' . self::getEspecialDay('Epip02')['date']));
+        self::setEspecialDay('Epip03', self::getEspecialDay('Epip02')['date']->copy()->modify('next sunday'));
         
         // Fourth Sunday after Epiphany ( Ordinary 4 )
-        self::setEspecialDay('Epip04', new Carbon('next sunday ' . self::getEspecialDay('Epip03')['date']));
+        self::setEspecialDay('Epip04', self::getEspecialDay('Epip03')['date']->copy()->modify('next sunday'));
         
         // Fifth Sunday after Epiphany ( Ordinary 5 )
-        self::setEspecialDay('Epip05', new Carbon('next sunday ' . self::getEspecialDay('Epip04')['date']));
+        self::setEspecialDay('Epip05', self::getEspecialDay('Epip04')['date']->copy()->modify('next sunday'));
         
-        // Sixth Sunday after Epiphany - Proper 1 ( Ordinary 6 )
-        self::setEspecialDay('Epip06', new Carbon('next sunday ' . self::getEspecialDay('Epip05')['date']));
-        
-        // Seventh Sunday after Epiphany - Proper 2 ( Ordinary 7 )
-        self::setEspecialDay('Epip07', new Carbon('next sunday ' . self::getEspecialDay('Epip06')['date']));
-        
-        // Eighth Sunday after Epiphany - Proper 3 ( Ordinary 8 )
-        self::setEspecialDay('Epip08', new Carbon('next sunday ' . self::getEspecialDay('Epip07')['date']));
-        
-        // Ninth Sunday after Epiphany - Proper 4 ( Ordinary 9 )
-        self::setEspecialDay('Epip09', new Carbon('next sunday ' . self::getEspecialDay('Epip08')['date']));
-        
-        // Transfiguration Sunday (or Last Sunday after Epiphany)
-        self::setEspecialDay('Tran', new Carbon('next sunday ' . self::getEspecialDay('Epip09')['date']));
+        // Set Epiphany dates
+        $diffTranEpip05 = self::getEspecialDay('Epip05')['date']->diffInWeeks(self::getEspecialDay('Tran')['date']);
+        for ($proper = 1; $proper <= 4; $proper++) {
+            $epip = $proper + 5;
+            var_dump($diffTranEpip05);
+            $observed = ($proper <= $diffTranEpip05-1) ? true : false;
+            
+            $beforeEpip = (($epip-1) < 10) ? 'Epip0' . ($epip-1) : 'Epip' . ($epip-1);
+            
+            $stringEpip = ($epip < 10) ? 'Epip0' . $epip : 'Epip' . $epip;
+            self::setEspecialDay($stringEpip, new Carbon('next sunday ' . self::getEspecialDay($beforeEpip)['date']), $observed);
+        }
         
         
-        
-        // Ash Wednesday
-        self::setEspecialDay('AshW', Carbon::now()->timestamp(easter_date($this->year))->subDays(46));
         
         // First Sunday in Lent
-        self::setEspecialDay('Lent01', new Carbon('next sunday ' . self::getEspecialDay('AshW')['date']));
+        self::setEspecialDay('Lent01', self::getEspecialDay('AshW')['date']->copy()->modify('next sunday'));
         
         // Second Sunday in Lent
-        self::setEspecialDay('Lent02', new Carbon('next sunday ' . self::getEspecialDay('Lent01')['date']));
+        self::setEspecialDay('Lent02', self::getEspecialDay('Lent01')['date']->copy()->modify('next sunday'));
         
         // Third Sunday in Lent
-        self::setEspecialDay('Lent03', new Carbon('next sunday ' . self::getEspecialDay('Lent02')['date']));
+        self::setEspecialDay('Lent03', self::getEspecialDay('Lent02')['date']->copy()->modify('next sunday'));
         
         // Fourth Sunday in Lent
-        self::setEspecialDay('Lent04', new Carbon('next sunday ' . self::getEspecialDay('Lent03')['date']));
+        self::setEspecialDay('Lent04', self::getEspecialDay('Lent03')['date']->copy()->modify('next sunday'));
         
         // Fifth Sunday in Lent
-        self::setEspecialDay('Lent05', new Carbon('next sunday ' . self::getEspecialDay('Lent04')['date']));
+        self::setEspecialDay('Lent05', self::getEspecialDay('Lent04')['date']->copy()->modify('next sunday'));
         
         // Passion Sunday or Palm Sunday
-        self::setEspecialDay('Palm', new Carbon('next sunday ' . self::getEspecialDay('Lent05')['date']));
+        self::setEspecialDay('Palm',   self::getEspecialDay('Lent05')['date']->copy()->modify('next sunday'));
         
         
         
         // Monday of Holy Week
-        self::setEspecialDay('Holy01', new Carbon('next day ' . self::getEspecialDay('Palm')['date']));
+        self::setEspecialDay('Holy01', self::getEspecialDay('Palm')['date']->copy()->addDay());
         
         // Tuesday of Holy Week
-        self::setEspecialDay('Holy02', new Carbon('next day ' . self::getEspecialDay('Holy01')['date']));
+        self::setEspecialDay('Holy02', self::getEspecialDay('Holy01')['date']->copy()->addDay());
         
         // Wednesday of Holy Week
-        self::setEspecialDay('Holy03', new Carbon('next day ' . self::getEspecialDay('Holy02')['date']));
+        self::setEspecialDay('Holy03', self::getEspecialDay('Holy02')['date']->copy()->addDay());
         
         // Holy Thursday
-        self::setEspecialDay('Holy04', new Carbon('next day ' . self::getEspecialDay('Holy03')['date']));
+        self::setEspecialDay('Holy04', self::getEspecialDay('Holy03')['date']->copy()->addDay());
         
         // Good Friday
-        self::setEspecialDay('Holy05', new Carbon('next day ' . self::getEspecialDay('Holy04')['date']));
+        self::setEspecialDay('Holy05', self::getEspecialDay('Holy04')['date']->copy()->addDay());
         
         // Holy Saturday
-        self::setEspecialDay('Holy06', new Carbon('next day ' . self::getEspecialDay('Holy05')['date']));
+        self::setEspecialDay('Holy06', self::getEspecialDay('Holy05')['date']->copy()->addDay());
         
         
         
         // Easter Vigil
-        self::setEspecialDay('Vigl', new Carbon('next day ' . self::getEspecialDay('Holy06')['date']));
+        self::setEspecialDay('Vigl', self::getEspecialDay('Holy06')['date']->copy()->addDay());
         
         // Second Sunday of Easter
-        self::setEspecialDay('East02', new Carbon('next sunday ' . self::getEspecialDay('Vigl')['date']));
+        self::setEspecialDay('East02', self::getEspecialDay('Vigl')['date']->copy()->modify('next sunday'));
         
         // Third Sunday of Easter
-        self::setEspecialDay('East03', new Carbon('next sunday ' . self::getEspecialDay('East02')['date']));
+        self::setEspecialDay('East03', self::getEspecialDay('East02')['date']->copy()->modify('next sunday'));
         
         // Fourth Sunday of Easter
-        self::setEspecialDay('East04', new Carbon('next sunday ' . self::getEspecialDay('East03')['date']));
+        self::setEspecialDay('East04', self::getEspecialDay('East03')['date']->copy()->modify('next sunday'));
         
         // Fifth Sunday of Easter
-        self::setEspecialDay('East05', new Carbon('next sunday ' . self::getEspecialDay('East04')['date']));
+        self::setEspecialDay('East05', self::getEspecialDay('East04')['date']->copy()->modify('next sunday'));
         
         // Sixth Sunday of Easter
-        self::setEspecialDay('East06', new Carbon('next sunday ' . self::getEspecialDay('East05')['date']));
+        self::setEspecialDay('East06', self::getEspecialDay('East05')['date']->copy()->modify('next sunday'));
         
         // Sixth Sunday of Easter
-        self::setEspecialDay('Ascn', new Carbon('next thursday ' . self::getEspecialDay('East06')['date']));
+        self::setEspecialDay('Ascn', self::getEspecialDay('East06')['date']->copy()->modify('next thursday'));
         
         // Seventh Sunday of Easter
-        self::setEspecialDay('East07', new Carbon('next sunday ' . self::getEspecialDay('East06')['date']));
+        self::setEspecialDay('East07', self::getEspecialDay('Ascn')['date']->copy()->modify('next sunday'));
         
         
         
         // Day of Pentecost
-        self::setEspecialDay('PDay', new Carbon('next sunday ' . self::getEspecialDay('East07')['date']));
+        self::setEspecialDay('PDay', self::getEspecialDay('East07')['date']->copy()->modify('next sunday'));
         
         // Triniy Sunday (First Sunday after Pentecost)
-        self::setEspecialDay('Trin', new Carbon('next sunday ' . self::getEspecialDay('PDay')['date']));
+        self::setEspecialDay('Trin', self::getEspecialDay('PDay')['date']->copy()->modify('next sunday'));
 
         // Set Propers dates
         $firstProper = self::getFirstProperAfterPentecost();
@@ -184,28 +189,29 @@ class Lectionary extends Controller{
             }
             
             $stringProper = ($proper < 10) ? 'Prop0' . $proper : 'Prop' . $proper;
-            self::setEspecialDay($stringProper, new Carbon('next sunday ' . self::getEspecialDay($beforeProper)['date']), $observed);
+            self::setEspecialDay($stringProper, self::getEspecialDay($beforeProper)['date']->copy()->modify('next sunday'), $observed);
         }
         
         
         
         // First Sunday of Advent
-        self::setEspecialDay('Advt01', new Carbon('next sunday ' . self::getEspecialDay('Prop29')['date']));
+        self::setEspecialDay('Advt01', self::getEspecialDay('Prop29')['date']->copy()->modify('next sunday'));
         
         // Second Sunday of Advent
-        self::setEspecialDay('Advt02', new Carbon('next sunday ' . self::getEspecialDay('Advt01')['date']));
+        self::setEspecialDay('Advt02', self::getEspecialDay('Advt01')['date']->copy()->modify('next sunday'));
         
         // Third Sunday of Advent
-        self::setEspecialDay('Advt03', new Carbon('next sunday ' . self::getEspecialDay('Advt02')['date']));
+        self::setEspecialDay('Advt03', self::getEspecialDay('Advt02')['date']->copy()->modify('next sunday'));
         
         // Fourth Sunday of Advent
-        self::setEspecialDay('Advt04', new Carbon('next sunday ' . self::getEspecialDay('Advt03')['date']));
+        self::setEspecialDay('Advt04', self::getEspecialDay('Advt03')['date']->copy()->modify('next sunday'));
         
     }
     
-    private function getFirstProperAfterPentecost(){
-        $firstSunday = new Carbon('next sunday ' . self::getEspecialDay('Trin')['date']);
-        
+    private function getTransfigurationSunday(){
+    }
+    
+    private function getFirstProperAfterPentecost(){    
         // Proper 3 ( Ordinary 8 )
         // Sunday between May 24 and May 28 inclusive (if after Trinity Sunday)
         if(self::getSundayDayBefore('Trin')->between(Carbon::create($this->year,5,24),Carbon::create($this->year,5,28)))
@@ -233,13 +239,13 @@ class Lectionary extends Controller{
     }
     
     private function setEspecialDay($code, Carbon $carbon, $observed = true){
-        // $this->periods[$code] = $carbon->getTimestamp();
-        $this->periods[$code] = [
+        // $this->especialDays[$code] = $carbon->getTimestamp();
+        $this->especialDays[$code] = [
             'date'     => $carbon,
             'observed' => $observed
         ];
         
-        return $this->periods;
+        return $this->especialDays;
     }
     
     private function setYearLiturgic(){

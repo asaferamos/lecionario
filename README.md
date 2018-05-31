@@ -1,2 +1,1 @@
-# Lecionário
-API em construção
+# Lectionary
