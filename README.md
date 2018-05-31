@@ -1,1 +1,1 @@
-# Lectionary
+# Revised Common Lectionary Library

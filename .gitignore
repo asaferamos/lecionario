@@ -1,5 +1,2 @@
 vendor/
-*.log
-
 .DS_Store
-config.php

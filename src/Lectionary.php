@@ -1,13 +1,11 @@
 <?php
-namespace App\Controllers;
+namespace Lectionary;
 use \App\Models\LectionaryModel;
-use \App\Log;
-use \App\Controllers\Periods;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
 
-class Lectionary extends Controller{
+class Lectionary{
     private $day;
     private $year;
     private $yearLiturgic;
