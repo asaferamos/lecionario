@@ -1,12 +1,13 @@
 <?php
 namespace Lectionary;
-use \App\Models\LectionaryModel;
+use Lectionary\Model;
+use Lectionary\Day;
+use Lectionary\Reading;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
 
 class Lectionary{
-    private $day;
     private $year;
     private $yearLiturgic;
     private $especialDays = [];
@@ -19,13 +20,10 @@ class Lectionary{
         self::setYearLiturgic();
         self::createPeriods();
         
-        // return $this->especialDays;
-        // echo $this->yearLiturgic;
     }
     
     public function nextSunday(){
         $carbon = new Carbon('next sunday');
-        // var_dump($carbon->getTimestamp());
     }
     
     public function especialDays(){
@@ -104,8 +102,11 @@ class Lectionary{
         // Fifth Sunday in Lent
         self::setEspecialDay('Lent05', self::getEspecialDay('Lent04')['date']->copy()->modify('next sunday'));
         
-        // Passion Sunday or Palm Sunday
+        // Palm Sunday
         self::setEspecialDay('Palm',   self::getEspecialDay('Lent05')['date']->copy()->modify('next sunday'));
+        
+        // Passion Sunday
+        self::setEspecialDay('Pass',   self::getEspecialDay('Palm')['date']->copy());
         
         
         
@@ -177,6 +178,7 @@ class Lectionary{
             }
             
             $stringProper = ($proper < 10) ? 'Prop0' . $proper : 'Prop' . $proper;
+            $stringProper = ($stringProper == 'Prop29') ? 'Regn' : $stringProper;
             $nextSunday   = self::getEspecialDay($beforeProper)['date']->copy()->modify('next sunday');
             
             // All Saints Day, if Proper before November 1
@@ -191,7 +193,7 @@ class Lectionary{
         
         
         // First Sunday of Advent
-        self::setEspecialDay('Advt01', self::getEspecialDay('Prop29')['date']->copy()->modify('next sunday'));
+        self::setEspecialDay('Advt01', self::getEspecialDay('Regn')['date']->copy()->modify('next sunday'));
         
         // Second Sunday of Advent
         self::setEspecialDay('Advt02', self::getEspecialDay('Advt01')['date']->copy()->modify('next sunday'));
@@ -241,10 +243,10 @@ class Lectionary{
     }
     
     private function setEspecialDay($code, Carbon $carbon, $observed = true){
-        // $this->especialDays[$code] = $carbon->getTimestamp();
         $this->especialDays[$code] = [
             'date'     => $carbon,
-            'observed' => $observed
+            'observed' => $observed,
+            'liturgicalName' => Model::getLiturgicalName($this->yearLiturgic . $code)
         ];
         
         return $this->especialDays;
