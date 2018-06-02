@@ -3,20 +3,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Lecionary 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/"
-"woocommerce-pagseguro\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
+"pagseguro\n"
 "POT-Creation-Date: 2018-05-31 21:37-0300\n"
+"PO-Revision-Date: 2018-06-02 11:54-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.0.7\n"
-
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "First Sunday of Advent"
-msgstr ""
+msgstr "Primeiro Domingo do Adventaa"
 
 msgid "Second Sunday of Advent"
 msgstr ""
@@ -247,402 +248,402 @@ msgid "Thanksgiving Day"
 msgstr ""
 
 msgid "Genesis"
-msgstr ""
+msgstr "Gênesis"
 
 msgid "Exodus"
-msgstr ""
+msgstr "Êxodo"
 
 msgid "Leviticus"
-msgstr ""
+msgstr "Levítico"
 
 msgid "Numbers"
-msgstr ""
+msgstr "Números"
 
 msgid "Deuteronomy"
-msgstr ""
+msgstr "Deuteronômio"
 
 msgid "Joshua"
-msgstr ""
+msgstr "Josué"
 
 msgid "Judges"
-msgstr ""
+msgstr "Juízes"
 
 msgid "Ruth"
-msgstr ""
+msgstr "Rute"
 
 msgid "1 Samuel"
-msgstr ""
+msgstr "1 Samuel"
 
 msgid "2 Samuel"
-msgstr ""
+msgstr "2 Samuel"
 
 msgid "1 Kings"
-msgstr ""
+msgstr "1 Reis"
 
 msgid "2 Kings"
-msgstr ""
+msgstr "2 Reis"
 
 msgid "1 Chronicles"
-msgstr ""
+msgstr "1 Crônicas"
 
 msgid "2 Chronicles"
-msgstr ""
+msgstr "2 Crônicas"
 
 msgid "Ezra"
-msgstr ""
+msgstr "Esdras"
 
 msgid "Nehemiah"
-msgstr ""
+msgstr "Neemias"
 
 msgid "Esther"
-msgstr ""
+msgstr "Ester"
 
 msgid "Job"
-msgstr ""
+msgstr "Jó"
 
 msgid "Psalm"
 msgid_plural "Psalms"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Salmo"
+msgstr[1] "Salmos"
 
 msgid "Proverbs"
-msgstr ""
+msgstr "Provérbios"
 
 msgid "Ecclesiastes"
-msgstr ""
+msgstr "Eclesiastes"
 
 msgid "Song of Solomon"
-msgstr ""
+msgstr "Cantares de Salomão"
 
 msgid "Isaiah"
-msgstr ""
+msgstr "Isaías"
 
 msgid "Jeremiah"
-msgstr ""
+msgstr "Jeremias"
 
 msgid "Lamentations"
-msgstr ""
+msgstr "Lamentações"
 
 msgid "Ezekiel"
-msgstr ""
+msgstr "Ezequiel"
 
 msgid "Daniel"
-msgstr ""
+msgstr "Daniel"
 
 msgid "Hosea"
-msgstr ""
+msgstr "Oseias"
 
 msgid "Joel"
-msgstr ""
+msgstr "Joel"
 
 msgid "Amos"
-msgstr ""
+msgstr "Amós"
 
 msgid "Obadiah"
-msgstr ""
+msgstr "Obadias"
 
 msgid "Jonah"
-msgstr ""
+msgstr "Jonas"
 
 msgid "Micah"
-msgstr ""
+msgstr "Miqueias"
 
 msgid "Nahum"
-msgstr ""
+msgstr "Naum"
 
 msgid "Habakkuk"
-msgstr ""
+msgstr "Habacuque"
 
 msgid "Zephaniah"
-msgstr ""
+msgstr "Sofonias"
 
 msgid "Haggai"
-msgstr ""
+msgstr "Ageu"
 
 msgid "Zechariah"
-msgstr ""
+msgstr "Zacarias"
 
 msgid "Malachi"
-msgstr ""
+msgstr "Malaquias"
 
 msgid "Matthew"
-msgstr ""
+msgstr "Mateus"
 
 msgid "Mark"
-msgstr ""
+msgstr "Marcos"
 
 msgid "Luke"
-msgstr ""
+msgstr "Lucas"
 
 msgid "John"
-msgstr ""
+msgstr "João"
 
 msgid "Acts"
-msgstr ""
+msgstr "Atos"
 
 msgid "Romans"
-msgstr ""
+msgstr "Romanos"
 
 msgid "1 Corinthians"
-msgstr ""
+msgstr "1 Coríntios"
 
 msgid "2 Corinthians"
-msgstr ""
+msgstr "2 Coríntios"
 
 msgid "Galatians"
-msgstr ""
+msgstr "Gálatas"
 
 msgid "Ephesians"
-msgstr ""
+msgstr "Efésios"
 
 msgid "Philippians"
-msgstr ""
+msgstr "Filipenses"
 
 msgid "Colossians"
-msgstr ""
+msgstr "Colossenses"
 
 msgid "1 Thessalonians"
-msgstr ""
+msgstr "1 Tessalonicenses"
 
 msgid "2 Thessalonians"
-msgstr ""
+msgstr "2 Tessalonicenses"
 
 msgid "1 Timothy"
-msgstr ""
+msgstr "1 Timóteo"
 
 msgid "2 Timothy"
-msgstr ""
+msgstr "2 Timóteo"
 
 msgid "Titus"
-msgstr ""
+msgstr "Tito"
 
 msgid "Philemon"
-msgstr ""
+msgstr "Filêmon"
 
 msgid "Hebrews"
-msgstr ""
+msgstr "Hebreus"
 
 msgid "James"
-msgstr ""
+msgstr "Tiago"
 
 msgid "1 Peter"
-msgstr ""
+msgstr "1 Pedro"
 
 msgid "2 Peter"
-msgstr ""
+msgstr "2 Pedro"
 
 msgid "1 John"
-msgstr ""
+msgstr "1 João"
 
 msgid "2 John"
-msgstr ""
+msgstr "2 João"
 
 msgid "3 John"
-msgstr ""
+msgstr "3 João"
 
 msgid "Jude"
-msgstr ""
+msgstr "Judas"
 
 msgid "Revelation"
-msgstr ""
+msgstr "Apocalipse"
 
 msgid "Ge"
-msgstr ""
+msgstr "Gên"
 
 msgid "Ex"
-msgstr ""
+msgstr "Êx"
 
 msgid "Le"
-msgstr ""
+msgstr "Le"
 
 msgid "Nu"
-msgstr ""
+msgstr "Núm"
 
 msgid "Dt"
-msgstr ""
+msgstr "De"
 
 msgid "Jos"
-msgstr ""
+msgstr "Jos"
 
 msgid "Jdg"
-msgstr ""
+msgstr "Jz"
 
 msgid "Ru"
-msgstr ""
+msgstr "Ru"
 
 msgid "1Sa"
-msgstr ""
+msgstr "1Sa"
 
 msgid "2Sa"
-msgstr ""
+msgstr "2Sa"
 
 msgid "1Ki"
-msgstr ""
+msgstr "1Rs"
 
 msgid "2Ki"
-msgstr ""
+msgstr "2Rs"
 
 msgid "1Ch"
-msgstr ""
+msgstr "1Cr"
 
 msgid "2Ch"
-msgstr ""
+msgstr "2Cr"
 
 msgid "Ezr"
-msgstr ""
+msgstr "Esd"
 
 msgid "Ne"
-msgstr ""
+msgstr "Ne"
 
 msgid "Es"
-msgstr ""
+msgstr "Est"
 
 msgid "Ps"
-msgstr ""
+msgstr "Sal"
 
 msgid "Pr"
-msgstr ""
+msgstr "Pr"
 
 msgid "Ec"
-msgstr ""
+msgstr "Ec"
 
 msgid "So"
-msgstr ""
+msgstr "Can"
 
 msgid "Is"
-msgstr ""
+msgstr "Is"
 
 msgid "Je"
-msgstr ""
+msgstr "Je"
 
 msgid "La"
-msgstr ""
+msgstr "La"
 
 msgid "Eze"
-msgstr ""
+msgstr "Ez"
 
 msgid "Da"
-msgstr ""
+msgstr "Da"
 
 msgid "Ho"
-msgstr ""
+msgstr "Os"
 
 msgid "Joe"
-msgstr ""
+msgstr "Jl"
 
 msgid "Am"
-msgstr ""
+msgstr "Am"
 
 msgid "Ob"
-msgstr ""
+msgstr "Ob"
 
 msgid "Jon"
-msgstr ""
+msgstr "Jon"
 
 msgid "Mic"
-msgstr ""
+msgstr "Miq"
 
 msgid "Na"
-msgstr ""
+msgstr "Na"
 
 msgid "Hab"
-msgstr ""
+msgstr "Hab"
 
 msgid "Zep"
-msgstr ""
+msgstr "Sof"
 
 msgid "Hag"
-msgstr ""
+msgstr "Ag"
 
 msgid "Zec"
-msgstr ""
+msgstr "Za"
 
 msgid "Mal"
-msgstr ""
+msgstr "Mal"
 
 msgid "Mt"
-msgstr ""
+msgstr "Mt"
 
 msgid "Mk"
-msgstr ""
+msgstr "Mr"
 
 msgid "Lu"
-msgstr ""
+msgstr "Lu"
 
 msgid "Jn"
-msgstr ""
+msgstr "Jo"
 
 msgid "Ac"
-msgstr ""
+msgstr "At"
 
 msgid "Ro"
-msgstr ""
+msgstr "Ro"
 
 msgid "1Co"
-msgstr ""
+msgstr "1Co"
 
 msgid "2Co"
-msgstr ""
+msgstr "2Co"
 
 msgid "Ga"
-msgstr ""
+msgstr "Gál"
 
 msgid "Eph"
-msgstr ""
+msgstr "Ef"
 
 msgid "Php"
-msgstr ""
+msgstr "Fil"
 
 msgid "Col"
-msgstr ""
+msgstr "Col"
 
 msgid "1Th"
-msgstr ""
+msgstr "1Te"
 
 msgid "2Th"
-msgstr ""
+msgstr "2Te"
 
 msgid "1Ti"
-msgstr ""
+msgstr "1Ti"
 
 msgid "2Ti"
-msgstr ""
+msgstr "2Ti"
 
 msgid "Tit"
-msgstr ""
+msgstr "Tit"
 
 msgid "Phm"
-msgstr ""
+msgstr "Flm"
 
 msgid "Heb"
-msgstr ""
+msgstr "He"
 
 msgid "Jas"
-msgstr ""
+msgstr "Tg"
 
 msgid "1Pe"
-msgstr ""
+msgstr "1Pe"
 
 msgid "2Pe"
-msgstr ""
+msgstr "2Pe"
 
 msgid "1Jn"
-msgstr ""
+msgstr "1Jo"
 
 msgid "2Jn"
-msgstr ""
+msgstr "2Jo"
 
 msgid "3Jn"
-msgstr ""
+msgstr "3Jo"
 
 msgid "Jud"
-msgstr ""
+msgstr "Ju"
 
 msgid "Re"
-msgstr ""
+msgstr "Ap"
 
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 msgid "and"
-msgstr ""
+msgstr "e"
