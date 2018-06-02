@@ -23,9 +23,21 @@ class Lectionary{
     
     public function getDay($day){
         $d = new Day($day);
+        $readings = [];
+        
         foreach ($d->getDay() as $key => $v) {
-            echo $v->getPsalmComp();
+            $readings[] = [
+                'FirstReadingComp' => $v->getFirstReadingComp(),
+                'FirstReadingSemi' => $v->getFirstReadingSemi(),
+                'PsalmComp'        => $v->getPsalmComp(),
+                'PsalmSemi'        => $v->getPsalmSemi(),
+                'EpistleReading'   => $v->getEpistleReading(),
+                'GospelReading'    => $v->getGospelReading(),
+                'Theme'            => $v->getTheme()
+            ];
         }
+        
+        return json_encode($readings);
     }
     
     public function especialDays(){

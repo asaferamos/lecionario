@@ -113,7 +113,7 @@ class Reading{
     }
     
     public function getFirstReadingComp(){
-        return $this->first_reading_comp;
+        return translateBooks($this->first_reading_comp);
     }
     
     private function setFirstReadingSemi($first_reading_semi){
@@ -121,7 +121,7 @@ class Reading{
     }
     
     public function getFirstReadingSemi(){
-        return $this->first_reading_semi;
+        return translateBooks($this->first_reading_semi);
     }
     
     private function setPsalmComp($psalm_comp){
@@ -137,7 +137,7 @@ class Reading{
     }
     
     public function getPsalmSemi(){
-        return $this->psalm_semi;
+        return translateBooks($this->psalm_semi);
     }
     
     private function setEpistleReading($epistle_reading){
@@ -145,7 +145,7 @@ class Reading{
     }
     
     public function getEpistleReading(){
-        return $this->epistle_reading;
+        return translateBooks($this->epistle_reading);
     }
     
     private function setGospelReading($gospel_reading){
@@ -153,7 +153,7 @@ class Reading{
     }
     
     public function getGospelReading(){
-        return $this->gospel_reading;
+        return translateBooks($this->gospel_reading);
     }
     
     private function setTheme($theme){
