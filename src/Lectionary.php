@@ -6,7 +6,6 @@ use Lectionary\Reading;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
-
 class Lectionary{
     private $year;
     private $yearLiturgic;
@@ -22,8 +21,11 @@ class Lectionary{
         
     }
     
-    public function nextSunday(){
-        $carbon = new Carbon('next sunday');
+    public function getDay($day){
+        $d = new Day($day);
+        foreach ($d->getDay() as $key => $v) {
+            echo $v->getPsalmComp();
+        }
     }
     
     public function especialDays(){
@@ -244,9 +246,10 @@ class Lectionary{
     
     private function setEspecialDay($code, Carbon $carbon, $observed = true){
         $this->especialDays[$code] = [
+            'code'     => $this->yearLiturgic . $code,
             'date'     => $carbon,
             'observed' => $observed,
-            'liturgicalName' => Model::getLiturgicalName($this->yearLiturgic . $code)
+            'liturgicalName' => __(Model::getLiturgicalName($this->yearLiturgic . $code))
         ];
         
         return $this->especialDays;

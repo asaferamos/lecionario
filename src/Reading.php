@@ -129,7 +129,7 @@ class Reading{
     }
     
     public function getPsalmComp(){
-        return $this->psalm_comp;
+        return translateBooks($this->psalm_comp);
     }
     
     private function setPsalmSemi($psalm_semi){

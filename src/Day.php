@@ -6,13 +6,16 @@ use Lectionary\Reading;
 class Day{
     private $readings = [];
     
-    public function __construct($yearLiturgic, $code){
-        $day = Model::getAllReadingsByYear($yearLiturgic);
-        dd($day);
+    public function __construct($code){
+        $day = Model::getEspecialDay($code);
+        
         foreach ($day as $key => $reading) {
             $o = new Reading($reading);
             $this->readings[] = $o;
         }
-        // die;
+    }
+    
+    public function getDay(){
+        return $this->readings;
     }
 }
