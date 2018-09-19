@@ -40,8 +40,22 @@ class Lectionary{
         return json_encode($readings);
     }
     
-    public function especialDays(){
-        return $this->especialDays;
+    public function especialDays($format = null, $indice = null){
+        if(is_null($format))
+            return $this->especialDays;
+
+        $_espcialDays = [];
+        foreach ($this->especialDays as $key => $day) {
+            $day['date'] = $day['date']->format($format); 
+            if(!is_null($indice)){
+                if($indice == 'date')
+                    $_espcialDays[$day['date']] = $day;
+                else
+                    $_espcialDays[$key] = $day;
+            }
+            break;
+        }
+        return $_espcialDays;
     }
     
     private function getSundayDayBefore($code){
